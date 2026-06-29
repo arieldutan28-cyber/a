@@ -1,0 +1,79 @@
+# 1. Almacenamiento de datos (Memoria temporal)
+tareas = []
+
+# --- FUNCIONES CRUD ---
+
+# CREATE (Crear)
+def crear_tarea():
+    nombre = input("Ingresa el nombre de la nueva tarea: ")
+    tareas.append(nombre)
+    print(f"¡Tarea '{nombre}' agregada con éxito!\n")
+
+# READ (Leer)
+def leer_tareas():
+    if not tareas:
+        print("No hay tareas en la lista.\n")
+    else:
+        print("--- Lista de Tareas ---")
+        for indice, tarea in enumerate(tareas):
+            print(f"{indice}. {tarea}")
+        print("-----------------------\n")
+
+# UPDATE (Actualizar)
+def actualizar_tarea():
+    leer_tareas()
+    if tareas:
+        try:
+            indice = int(input("Ingresa el número de la tarea a actualizar: "))
+            if 0 <= indice < len(tareas):
+                nuevo_nombre = input("Ingresa el nuevo nombre: ")
+                tareas[indice] = nuevo_nombre
+                print("¡Tarea actualizada con éxito!\n")
+            else:
+                print("Número de tarea no válido.\n")
+        except ValueError:
+            print("Por favor, ingresa un número válido.\n")
+
+# DELETE (Eliminar)
+def eliminar_tarea():
+    leer_tareas()
+    if tareas:
+        try:
+            indice = int(input("Ingresa el número de la tarea a eliminar: "))
+            if 0 <= indice < len(tareas):
+                tarea_eliminada = tareas.pop(indice)
+                print(f"¡Tarea '{tarea_eliminada}' eliminada!\n")
+            else:
+                print("Número de tarea no válido.\n")
+        except ValueError:
+            print("Por favor, ingresa un número válido.\n")
+
+# --- MENÚ PRINCIPAL ---
+def iniciar_aplicacion():
+    while True:
+        print("=== MENÚ CRUD ===")
+        print("1. Crear tarea")
+        print("2. Ver tareas")
+        print("3. Actualizar tarea")
+        print("4. Eliminar tarea")
+        print("5. Salir")
+        
+        opcion = input("Elige una opción (1-5): ")
+        print() # Salto de línea por estética
+        
+        if opcion == '1':
+            crear_tarea()
+        elif opcion == '2':
+            leer_tareas()
+        elif opcion == '3':
+            actualizar_tarea()
+        elif opcion == '4':
+            eliminar_tarea()
+        elif opcion == '5':
+            print("¡Hasta luego!")
+            break # Rompe el bucle y termina el programa
+        else:
+            print("Opción no válida. Intenta de nuevo.\n")
+
+# Ejecutar el programa
+iniciar_aplicacion()
