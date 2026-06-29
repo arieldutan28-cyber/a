@@ -172,20 +172,18 @@ class _CrudHomePageState extends State<CrudHomePage> {
                   child: ListTile(
                     title: Text(item.name, style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(item.description),
-                    trailing: SizedBox(
-                      width: 100,
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () => _showForm(item.id),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () => _deleteItem(item.id),
-                          ),
-                        ],
-                      ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextButton(
+                          onPressed: () => _showForm(item.id),
+                          child: const Text('Editar', style: TextStyle(color: Colors.blue)),
+                        ),
+                        TextButton(
+                          onPressed: () => _deleteItem(item.id),
+                          child: const Text('Eliminar', style: TextStyle(color: Colors.red)),
+                        ),
+                      ],
                     ),
                   ),
                 );
